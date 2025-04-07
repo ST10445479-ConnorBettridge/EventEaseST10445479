@@ -1,0 +1,91 @@
+﻿@model EventEase.Web.Models.DashboardViewModel
+@{
+    ViewData["Title"] = "EventEase Dashboard";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to EventEase</h1>
+    <p>A venue booking management system for coordinating events across different venues.</p>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card bg-primary text-white mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Venues</h5>
+                <p class="card-text display-4">@Model.VenueCount</p>
+            </div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <a class="small text-white stretched-link" href="@Url.Action("Index", "Venues")">View Details</a>
+                <div class="small text-white"><i class="fa fa-angle-right"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-success text-white mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Events</h5>
+                <p class="card-text display-4">@Model.EventCount</p>
+            </div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <a class="small text-white stretched-link" href="@Url.Action("Index", "Events")">View Details</a>
+                <div class="small text-white"><i class="fa fa-angle-right"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-warning text-white mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Bookings</h5>
+                <p class="card-text display-4">@Model.BookingCount</p>
+            </div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <a class="small text-white stretched-link" href="@Url.Action("Index", "Bookings")">View Details</a>
+                <div class="small text-white"><i class="fa fa-angle-right"></i></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                Recent Bookings
+            </div>
+            <div class="card-body">
+                @if (Model.RecentBookings.Any())
+                {
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Event</th>
+                                <th>Venue</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var booking in Model.RecentBookings)
+                            {
+                                <tr>
+                                    <td>@booking.Event.EventName</td>
+                                    <td>@booking.Venue.VenueName</td>
+                                    <td>@booking.BookingDate.ToShortDateString()</td>
+                                    <td>
+                                        <a href="@Url.Action("Details", "Bookings", new { id = booking.BookingId })" class="btn btn-info btn-sm">Details</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <p class="text-center">No bookings found.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+@model EventEase.Web.Models.Booking
+
+@{
+    ViewData["Title"] = "Booking Details";
+}
+
+<h1>Booking Details</h1>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4>Booking #@Model.BookingId</h4>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-3">Event</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.Event.EventName)</dd>
+                    
+                    <dt class="col-sm-3">Venue</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.Venue.VenueName)</dd>
+                    
+                    <dt class="col-sm-3">Booking Date</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.BookingDate)</dd>
+                </dl>
+                
+                <h5 class="mt-4">Venue Details</h5>
+                <dl class="row">
+                    <dt class="col-sm-3">Location</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.Venue.Location)</dd>
+                    
+                    <dt class="col-sm-3">Capacity</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.Venue.Capacity)</dd>
+                </dl>
+                
+                <h5 class="mt-4">Event Details</h5>
+                <dl class="row">
+                    <dt class="col-sm-3">Event Date</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.Event.EventDate)</dd>
+                    
+                    <dt class="col-sm-3">Description</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.Event.Description)</dd>
+                </dl>
+            </div>
+            <div class="card-footer">
+                <a asp-action="Edit" asp-route-id="@Model.BookingId" class="btn btn-warning">Edit</a>
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div> 

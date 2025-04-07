@@ -1,0 +1,52 @@
+@model EventEase.Web.Models.Venue
+
+@{
+    ViewData["Title"] = "Create Venue";
+}
+
+<h1>Create Venue</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h4>Venue Details</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group mb-3">
+                        <label asp-for="VenueName" class="control-label"></label>
+                        <input asp-for="VenueName" class="form-control" />
+                        <span asp-validation-for="VenueName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Location" class="control-label"></label>
+                        <input asp-for="Location" class="form-control" />
+                        <span asp-validation-for="Location" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Capacity" class="control-label"></label>
+                        <input asp-for="Capacity" class="form-control" />
+                        <span asp-validation-for="Capacity" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="ImageUrl" class="control-label">Image URL</label>
+                        <input asp-for="ImageUrl" class="form-control" placeholder="Enter a placeholder image URL" />
+                        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                        <small class="form-text text-muted">Enter a URL for the venue image. For example: https://placeholder.com/venue.jpg</small>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Create</button>
+                        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} 
